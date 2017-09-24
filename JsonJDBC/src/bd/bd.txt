@@ -1,0 +1,7 @@
+create database bdws;
+use bdws;
+create table articulo(
+cod varchar (4),
+nom varchar(50),
+stock int
+);
