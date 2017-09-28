@@ -2,7 +2,9 @@ package pe.cibertec.app;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +24,20 @@ public class GenerateJsonApp {
 		File file = new File(path);
 
 		for (File fx : file.listFiles()) {
-			leerFx(fx);
+
+			if (getFileExtension(fx).equals("xml")) {
+				leerFx(fx);
+			}
+
+		}
+	}
+
+	private static String getFileExtension(File file) {
+		String name = file.getName();
+		try {
+			return name.substring(name.lastIndexOf(".") + 1);
+		} catch (Exception e) {
+			return "";
 		}
 	}
 
@@ -48,11 +63,14 @@ public class GenerateJsonApp {
 			Gson gson = new Gson();
 			String myJson = gson.toJson(arrayJson);
 
-			String path = "/home/julio/Documentos/Tools/modelo1dsw/articulos.json";
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String random = sdf.format(new Date());
+
+			String path = "/home/julio/Documentos/Tools/modelo1dsw/articulos-" + random + ".json";
 			File file = new File(path);
 			FileOutputStream salida = new FileOutputStream(file);
 			salida.write(myJson.getBytes());
-			
+
 			salida.close();
 			System.out.println("Json generado");
 
