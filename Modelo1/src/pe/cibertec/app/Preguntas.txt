@@ -1,0 +1,3 @@
+1.-generar un archivo xml con todos los articulos que no tengan stock ,el archivo se debe generar cada 5 minutos
+2.-hacer un programa que lea los xml que hay en una carpeta y generar un json con todos los articulos encontrados 
+en ese xml sin repertirse.
